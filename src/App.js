@@ -194,3 +194,5 @@ function App() {
 }
 
 export default App; // export: 내보내기, import: 가져오기
+
+// App.js 커멘트 추가
