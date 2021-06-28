@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import { Grid, Hidden } from "@material-ui/core";
 import {
@@ -13,74 +12,20 @@ import {
   TextField,
 } from "@material-ui/core";
 
-const Promise = () => {
-  const [promiseList, setPromiseList] = useState([]);
+const PromiseTable = ({
+  inputDateRef,
+  inputPromiseRef,
+  inputNameRef,
+  tbodyRef,
+  onAdd,
+  onRemove,
+  onEdit,
+  onSave,
+  onCancel,
+  promiseList,
+}) => {
+  const classes = useStyles();
 
-  const inputDate = useRef();
-  const inputPromise = useRef();
-  const inputName = useRef();
-  const tbody = useRef();
-
-  const add = () => {
-    setPromiseList([
-      {
-        date: inputDate.current.value,
-        promise: inputPromise.current.value,
-        name: inputName.current.value,
-      },
-      ...promiseList,
-    ]);
-
-    inputDate.current.value = "";
-    inputPromise.current.value = "";
-    inputName.current.value = "";
-  };
-
-  const remove = (index) => {
-    setPromiseList(promiseList.filter((promiseContent, idx) => idx !== index));
-  };
-
-  const edit = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          promiseContent.isEdit = true;
-        }
-        return promiseContent;
-      })
-    );
-  };
-
-  const cancel = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          delete promiseContent.isEdit;
-        }
-        return promiseContent;
-      })
-    );
-  };
-
-  const save = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          const td = tbody.current.children[index];
-          const editInput1 = td.querySelector("#editDate");
-          const editInput2 = td.querySelector("#editPromise");
-          const editInput3 = td.querySelector("#editName");
-
-          promiseContent.date = editInput1.value;
-          promiseContent.promise = editInput2.value;
-          promiseContent.name = editInput3.value;
-
-          delete promiseContent.isEdit;
-        }
-        return promiseContent;
-      })
-    );
-  };
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -97,7 +42,6 @@ const Promise = () => {
     },
   }));
 
-  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Grid container className={classes.container} spacing={3}>
@@ -109,7 +53,7 @@ const Promise = () => {
             <TextField
               type="text"
               label="날짜"
-              inputRef={inputDate}
+              inputRef={inputDateRef}
               variant="outlined"
               size="small"
               style={{ width: "30%", marginRight: "0.5rem" }}
@@ -118,7 +62,7 @@ const Promise = () => {
             <TextField
               type="text"
               label="약속내용"
-              inputRef={inputPromise}
+              inputRef={inputPromiseRef}
               variant="outlined"
               size="small"
               style={{ width: "50%", marginRight: "0.5rem" }}
@@ -127,7 +71,7 @@ const Promise = () => {
             <TextField
               type="text"
               label="이름"
-              inputRef={inputName}
+              inputRef={inputNameRef}
               variant="outlined"
               size="small"
               style={{ width: "20%", marginRight: "0.5rem" }}
@@ -135,7 +79,7 @@ const Promise = () => {
             <Button
               variant="outlined"
               onClick={() => {
-                add();
+                onAdd();
               }}
               color="primary"
               size="small"
@@ -154,7 +98,7 @@ const Promise = () => {
                   <TableCell>수정/삭제</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody ref={tbody}>
+              <TableBody ref={tbodyRef}>
                 {promiseList.map((promiseContent, index) => (
                   <TableRow key={index}>
                     {!promiseContent.isEdit && (
@@ -201,7 +145,7 @@ const Promise = () => {
                         color="primary"
                         size="small"
                         onClick={() => {
-                          remove(index);
+                          onRemove(index);
                         }}
                       >
                         삭제
@@ -212,7 +156,7 @@ const Promise = () => {
                           color="primary"
                           size="small"
                           onClick={() => {
-                            edit(index);
+                            onEdit(index);
                           }}
                         >
                           수정
@@ -225,7 +169,7 @@ const Promise = () => {
                           color="primary"
                           size="small"
                           onClick={() => {
-                            save(index);
+                            onSave(index);
                           }}
                         >
                           저장
@@ -237,7 +181,7 @@ const Promise = () => {
                           color="primary"
                           size="small"
                           onClick={() => {
-                            cancel(index);
+                            onCancel(index);
                           }}
                         >
                           취소
@@ -258,4 +202,4 @@ const Promise = () => {
   );
 };
 
-export default Promise;
+export default PromiseTable;
