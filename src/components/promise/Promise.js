@@ -1,89 +1,41 @@
-import { useRef, useState } from "react";
+import { makeStyles } from "@material-ui/core";
+import { Grid, Hidden } from "@material-ui/core";
+
+import PromiseForm from "./PromiseForm";
 import PromiseTable from "./PromiseTable";
-
 const Promise = () => {
-  const [promiseList, setPromiseList] = useState([]);
-
-  const inputDate = useRef();
-  const inputPromise = useRef();
-  const inputName = useRef();
-  const tbody = useRef();
-  const input = useRef();
-
-  const handleAdd = () => {
-    setPromiseList([
-      {
-        date: inputDate.current.value,
-        promise: inputPromise.current.value,
-        name: inputName.current.value,
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: "center",
+      color: theme.palette.text.secondary,
+    },
+    container: {
+      [theme.breakpoints.up("lg")]: {
+        marginTop: "80px",
       },
-      ...promiseList,
-    ]);
+    },
+  }));
 
-    inputDate.current.value = "";
-    inputPromise.current.value = "";
-    inputName.current.value = "";
-  };
-
-  const handleRemove = (index) => {
-    setPromiseList(promiseList.filter((promiseContent, idx) => idx !== index));
-  };
-
-  const handleEdit = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          promiseContent.isEdit = true;
-        }
-        return promiseContent;
-      })
-    );
-  };
-
-  const handleCancel = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          delete promiseContent.isEdit;
-        }
-        return promiseContent;
-      })
-    );
-  };
-
-  const handleSave = (index) => {
-    setPromiseList(
-      promiseList.map((promiseContent, idx) => {
-        if (idx === index) {
-          const td = tbody.current.children[index];
-          const editInput1 = td.querySelector("#editDate");
-          const editInput2 = td.querySelector("#editPromise");
-          const editInput3 = td.querySelector("#editName");
-
-          promiseContent.date = editInput1.value;
-          promiseContent.promise = editInput2.value;
-          promiseContent.name = editInput3.value;
-
-          delete promiseContent.isEdit;
-        }
-        return promiseContent;
-      })
-    );
-  };
-
+  const classes = useStyles();
   return (
-    <PromiseTable
-      inputDateRef={inputDate}
-      inputPromiseRef={inputPromise}
-      inputNameRef={inputName}
-      tbodyRef={tbody}
-      onAdd={handleAdd}
-      onRemove={handleRemove}
-      onEdit={handleEdit}
-      onCancel={handleCancel}
-      onSave={handleSave}
-      promiseList={promiseList}
-    />
+    <div className={classes.root}>
+      <Grid container className={classes.container} spacing={3}>
+        <Hidden>
+          <Grid item sm={1} md={2} lg={2}></Grid>
+        </Hidden>
+        <Grid item xs={12} sm={10} lg={8}>
+          <PromiseForm />
+          <PromiseTable />
+        </Grid>
+        <Hidden>
+          <Grid item sm={1} md={2} lg={2}></Grid>
+        </Hidden>
+      </Grid>
+    </div>
   );
 };
 

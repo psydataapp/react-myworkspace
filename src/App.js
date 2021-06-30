@@ -15,11 +15,18 @@ import {
   Home as HomeIcon,
 } from "@material-ui/icons";
 
-import Home from "./components/Home";
+import Home from "./components/home/Home";
+
+import rootReducer from "./redux";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
+const store = createStore(rootReducer);
 
 const Promise = lazy(() => import("./components/promise/Promise"));
 
 const drawerWidth = "240px";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -49,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-
   link: {
     textDecoration: "none",
     color: "inherit",
@@ -65,9 +71,9 @@ function App() {
   };
 
   const drawer = (
-    <nav>
+    <>
       <div className={classes.toolbar}>
-        <List>
+        <List component="nav">
           <Link to="/" className={classes.link}>
             <ListItem button>
               <ListItemIcon>
@@ -86,59 +92,61 @@ function App() {
           </Link>
         </List>
       </div>
-    </nav>
+    </>
   );
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <header>
-          <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                edge="start"
-                className={classes.menuButton}
-                onClick={handleDrawerToggle}
+    <Provider store={store}>
+      <Router>
+        <div className={classes.root}>
+          <header>
+            <AppBar position="fixed" className={classes.appBar}>
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  edge="start"
+                  className={classes.menuButton}
+                  onClick={handleDrawerToggle}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" noWrap>
+                  My Workspace
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Hidden lgUp implementation="css">
+              <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                classes={{ paper: classes.drawerPaper }}
+                onClose={handleDrawerToggle}
               >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" noWrap>
-                My Workspace
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Hidden lgUp implementation="css">
-            <Drawer
-              variant="temporary"
-              open={mobileOpen}
-              classes={{ paper: classes.drawerPaper }}
-              onClose={handleDrawerToggle}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-          <Hidden mdDown implementation="css">
-            <Drawer
-              open
-              variant="permanent"
-              classes={{ paper: classes.drawerPaper }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-        </header>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route path="/" component={Home} exact></Route>
-              <Route path="/promise" component={Promise} exact></Route>
-            </Switch>
-          </Suspense>
-        </main>
-      </div>
-    </Router>
+                {drawer}
+              </Drawer>
+            </Hidden>
+            <Hidden mdDown implementation="css">
+              <Drawer
+                open
+                variant="permanent"
+                classes={{ paper: classes.drawerPaper }}
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </header>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route path="/" component={Home} exact></Route>
+                <Route path="/promise" component={Promise} exact></Route>
+              </Switch>
+            </Suspense>
+          </main>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
