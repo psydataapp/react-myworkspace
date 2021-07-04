@@ -9,14 +9,12 @@ const PromiseForm = () => {
   const dispatch = useDispatch();
 
   const add = () => {
-    const id = new Date().getTime();
     const date = inputDate.current.value;
     const promise = inputPromise.current.value;
     const name = inputName.current.value;
     dispatch({
       type: "ADD_PROMISE",
       payload: {
-        id,
         date,
         promise,
         name,

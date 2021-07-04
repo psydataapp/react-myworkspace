@@ -1,6 +1,5 @@
 import {
   TableContainer,
-  Paper,
   Table,
   TableHead,
   TableRow,
@@ -9,7 +8,8 @@ import {
 } from "@material-ui/core";
 import PromiseItem from "./PromiseItem";
 import { makeStyles } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const useStyles = makeStyles({
   table: {
@@ -20,9 +20,13 @@ const useStyles = makeStyles({
 const PromiseTable = () => {
   const classes = useStyles();
   const promiseList = useSelector((state) => state.promise);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "FETCH_PROMISELIST" });
+  }, [dispatch]);
   return (
     <div>
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Table className={classes.table} aria-label="simple-table">
           <TableHead>
             <TableRow>
@@ -32,7 +36,7 @@ const PromiseTable = () => {
               <TableCell>수정/삭제</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody style={{ height: "40vh", overflowY: "auto" }}>
             {promiseList.map((promiseContent) => (
               <PromiseItem
                 key={promiseContent.id}

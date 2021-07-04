@@ -42,7 +42,7 @@ const TableDataSample = ({ data }) => {
               <Th
                 style={{
                   borderBottom: "1px solid rgba(224, 224, 224)",
-                  lineHeight: "2rem",
+                  lineHeight: "1rem",
                   fontWeight: "bold",
                 }}
                 key={`th-${index}`}
@@ -65,7 +65,7 @@ const TableDataSample = ({ data }) => {
                 <Td
                   style={{
                     borderBottom: "1px solid rgba(224, 224, 224)",
-                    lineHeight: "2rem",
+                    lineHeight: "1px",
                   }}
                   key={`td-${index}`}
                 >

@@ -536,7 +536,7 @@ const source = [
     theDayAfterTomorrow: "2",
   },
   {
-    code: "D04", 
+    code: "D04",
     date: "2021062906",
     areaNo: "2600000000",
     today: "2",

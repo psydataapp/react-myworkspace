@@ -13,13 +13,13 @@ const LineChartSample = ({ data }) => {
     <div>
       <LineChart width={300} height={150} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" interval="preserveEnd" />
+        <XAxis dataKey="sido" interval="preserveEnd" />
         <YAxis interval="preserveEnd" />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="today"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
@@ -27,13 +27,13 @@ const LineChartSample = ({ data }) => {
 
       <LineChart width={300} height={150} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" interval="preserveStart" />
+        <XAxis dataKey="sido" interval="preserveStart" />
         <YAxis interval="preserveStart" />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="today"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
@@ -41,13 +41,13 @@ const LineChartSample = ({ data }) => {
 
       <LineChart width={300} height={150} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" interval="preserveStartEnd" />
+        <XAxis dataKey="sido" interval="preserveStartEnd" />
         <YAxis interval="preserveStartEnd" />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="today"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
@@ -55,13 +55,13 @@ const LineChartSample = ({ data }) => {
 
       <LineChart width={300} height={150} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" interval={0} angle={30} dx={20} />
+        <XAxis dataKey="sido" interval={0} angle={30} dx={20} />
         <YAxis />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="today"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />

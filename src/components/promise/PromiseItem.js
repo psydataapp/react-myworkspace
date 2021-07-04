@@ -17,10 +17,10 @@ const PromiseItem = ({ promiseContent }) => {
     const date = inputDate.current.value;
     const promise = inputPromise.current.value;
     const name = inputName.current.value;
-    dispatch({ type: "SAVE_PROMISE", payload: { id, date, promise, name } });
+    dispatch({ type: "MODIFY_PROMISE", payload: { id, date, promise, name } });
   };
   return (
-    <TableRow>
+    <TableRow style={{ height: "2rem" }}>
       {!isEdit && <TableCell align="left">{promiseContent.date}</TableCell>}
       {!isEdit && <TableCell align="left">{promiseContent.promise}</TableCell>}
       {!isEdit && <TableCell align="left">{promiseContent.name}</TableCell>}

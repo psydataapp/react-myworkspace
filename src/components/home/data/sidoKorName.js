@@ -1,4 +1,3 @@
-import { AirlineSeatLegroomNormal } from "@material-ui/icons";
 
 
 const sidoKorName = {
@@ -19,7 +18,6 @@ const sidoKorName = {
   "4700000000": "경북",
   "4800000000": "경남",
   "5000000000": "제주",
-  
 };
 
 export default sidoKorName;
