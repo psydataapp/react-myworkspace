@@ -1,34 +1,27 @@
-import { Table, Thead, Tbody, Tr, Td, Th } from "react-super-responsive-table";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
-const pm10Color = (val) => {
-  let color = "#329fff";
-
-  if (val > 30 && val <= 80) {
-    color = "#00c73c";
-  } else if (val > 80 && val <= 150) {
-    color = "#fd9b5a";
-  } else if (val > 150) {
-    color = "#ff5959";
-  }
-
+const foodPoisonColor = (val) => {
+  let color = "#000000";
+  if (val == 0) {
+    color = "#00BFFF";
+  } else if (val == 1) {
+    color = "#80E12A";
+  } else if (val == 2) {
+    color = "#FFA500";
+  } else if (val == 3) {
+    color = "#FF0000";
+  } else if (val < 55) {
+    color = "#00BFFF";
+  } else if (val >= 55 && val < 71) {
+    color = "#80E12A";
+  } else if (val >= 71 && val < 86) {
+    color = "#FFB400";
+  } else if (val >= 86) color = "#FF0000";
   return color;
 };
 
-const pm25Color = (val) => {
-  let color = "#329fff";
-
-  if (val > 15 && val <= 35) {
-    color = "#00c73c";
-  } else if (val > 35 && val <= 75) {
-    color = "#fd9b5a";
-  } else if (val > 75) {
-    color = "#ff5959";
-  }
-
-  return color;
-};
-
-const TableDataSample = ({ data }) => {
+const ResponsiveTable = ({ data }) => {
   console.log("--table data--");
   console.log(data);
 
@@ -42,7 +35,7 @@ const TableDataSample = ({ data }) => {
               <Th
                 style={{
                   borderBottom: "1px solid rgba(224, 224, 224)",
-                  lineHeight: "1rem",
+                  lineHeight: "2rem",
                   fontWeight: "bold",
                 }}
                 key={`th-${index}`}
@@ -65,7 +58,7 @@ const TableDataSample = ({ data }) => {
                 <Td
                   style={{
                     borderBottom: "1px solid rgba(224, 224, 224)",
-                    lineHeight: "1px",
+                    lineHeight: "2rem",
                   }}
                   key={`td-${index}`}
                 >
@@ -82,8 +75,8 @@ const TableDataSample = ({ data }) => {
                       style={{
                         color:
                           item.구분 === "PM10"
-                            ? pm10Color(item[key])
-                            : pm25Color(item[key]),
+                            ? foodPoisonColor(item[key])
+                            : foodPoisonColor(item[key]),
                       }}
                     >
                       {item[key]}
@@ -99,4 +92,4 @@ const TableDataSample = ({ data }) => {
   );
 };
 
-export default TableDataSample;
+export default ResponsiveTable;

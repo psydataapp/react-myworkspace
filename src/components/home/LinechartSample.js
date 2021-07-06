@@ -11,57 +11,57 @@ import {
 const LineChartSample = ({ data }) => {
   return (
     <div>
-      <LineChart width={300} height={150} data={data}>
+      <LineChart width={200} height={100} data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="sido" interval="preserveEnd" />
-        <YAxis interval="preserveEnd" />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="today"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-
-      <LineChart width={300} height={150} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="sido" interval="preserveStart" />
-        <YAxis interval="preserveStart" />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="today"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-
-      <LineChart width={300} height={150} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="sido" interval="preserveStartEnd" />
-        <YAxis interval="preserveStartEnd" />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="today"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-
-      <LineChart width={300} height={150} data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="sido" interval={0} angle={30} dx={20} />
+        <XAxis dataKey="date" interval={0} />
         <YAxis />
         <Tooltip />
         <Legend />
         <Line
           type="monotone"
-          dataKey="today"
+          dataKey="식중독지수"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
+
+      <LineChart width={200} height={100} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" interval={0} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="천식폐질환가능지수"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
+
+      <LineChart width={200} height={100} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" interval={0} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="뇌졸증가능지수"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
+
+      <LineChart width={200} height={100} data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" interval={0} />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="피부질환가능지수"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />

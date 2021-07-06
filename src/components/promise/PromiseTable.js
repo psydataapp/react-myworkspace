@@ -36,7 +36,7 @@ const PromiseTable = () => {
               <TableCell>수정/삭제</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody style={{ height: "40vh", overflowY: "auto" }}>
+          <TableBody style={{ height: "40vh", overflowY: "scroll" }}>
             {promiseList.map((promiseContent) => (
               <PromiseItem
                 key={promiseContent.id}

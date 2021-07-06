@@ -33,6 +33,7 @@ const Promise = () => {
           <Grid item sm={1} md={1} lg={2}></Grid>
         </Hidden>
         <Grid item xs={12} sm={10} md={10} lg={8}>
+          <h2>약속관리</h2>
           <Paper className={classes.paper} style={{ width: "100%" }}>
             <PromiseForm />
             <PromiseTable />
